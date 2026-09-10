@@ -1,0 +1,13 @@
+{
+  "_note": "SERVED reference/template. The PreToolUse roster-guard command needs the per-run ABSOLUTE path of the materialised hook, which does not exist until materialise time; the client composes the run-correct wiring (src/client/lifecycle/method-wiring.ts) and Phase 4 writes it into the RUN REPO's own .claude/settings.local.json. The guard reads $HARNESS_ROSTER_FILE (set by the client to the materialised roster.json) with priority.",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Task|Agent",
+        "hooks": [
+          { "type": "command", "command": "node \"${HARNESS_METHOD_DIR}/.claude/hooks/roster-guard.cjs\"" }
+        ]
+      }
+    ]
+  }
+}
